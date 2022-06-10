@@ -32,6 +32,6 @@ public class Montecarlo {
         long seconds = (time/1000)%60;
         long millis = time;
 
-        return String.format("%f-%d-%02d:%02d:%07d", pi, n, minutes, seconds, millis);
+        return String.format("%f;%d;%02d:%02d:%07d", pi, n, minutes, seconds, millis);
     }
 }

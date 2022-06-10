@@ -21,12 +21,15 @@ public class GUIController implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        update();
         events();
     }
 
-    public void update() {
+    public void update(String result) {
+        String[] show = result.split(";");
 
+        System.out.println(result);
+        
+        gui.getTable().addRow(show);
     }
 
     public void events() {
@@ -38,9 +41,7 @@ public class GUIController implements Runnable {
                     int epsilonExp = Integer.parseInt(gui.getEpsilon().getText());
                     int seed = Integer.parseInt(gui.getSeed().getText());
 
-                    String result[] = montecarlo.computePi(targetPointsExponent, epsilonExp, seed).split("-");
-
-                    gui.getTable().addRow(result);
+                    update(montecarlo.computePi(targetPointsExponent, epsilonExp, seed));
                 }
             }
         });
@@ -51,9 +52,9 @@ public class GUIController implements Runnable {
                 if(!gui.getExperiments().getSelectedItem().toString().equals("-Select-")) {
                     int targetPointsExponent = Integer.parseInt(gui.getExperiments().getSelectedItem().toString().split("e")[1]);
                     
-                    String result[] = montecarlo.computePi(targetPointsExponent, 0, 42).split("-");
-                
-                    gui.getTable().addRow(result);
+                    for(int i=0; i<10; i++){
+                        update(montecarlo.computePi(targetPointsExponent, 0, 42));
+                    }
                 }
             }
         });

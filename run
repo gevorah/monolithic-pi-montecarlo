@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# linux run
+./gradlew build
+java -jar ./build/libs/monolithic-pi-montecarlo.jar
